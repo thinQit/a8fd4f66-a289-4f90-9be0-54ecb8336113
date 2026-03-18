@@ -1,2 +1,14 @@
-# a8fd4f66-a289-4f90-9be0-54ecb8336113
-Generated project: codex
+# Bella Notte
+
+Modern Italian restaurant website built with Next.js 14, TypeScript, Tailwind CSS, and shadcn/ui.
+
+## Tech Stack
+
+- Next.js 14 (App Router)
+- TypeScript
+- Tailwind CSS
+- shadcn/ui utilities
+- Framer Motion animations
+
+## Getting Started
+
