@@ -12,17 +12,11 @@ interface NavLink {
 }
 
 interface NavbarProps {
-  logo = 'Bella Notte'
-  phone = '(212) 555-0199'
-  navLinks = [
-    { label: 'Menu', href: '#menu' },
-    { label: 'About', href: '#about' },
-    { label: 'Gallery', href: '#gallery' },
-    { label: 'Reviews', href: '#testimonials' },
-    { label: 'Location', href: '#location' },
-  ]
-  reserveHref = '#reservation'
-  orderHref = '#menu'
+  logo?: string
+  phone?: string
+  navLinks?: NavLink[]
+  reserveHref?: string
+  orderHref?: string
 }
 
 export default function Navbar({
@@ -60,23 +54,33 @@ export default function Navbar({
             <Phone className="h-4 w-4 text-[#606C38]" />
             {phone}
           </a>
-          <Button asChild variant="outline" className="border-[#DDA15E] text-[#722F37]">
-            <Link href={orderHref}>Order</Link>
-          </Button>
-          <Button asChild className="bg-[#722F37] text-white hover:bg-[#5f2730]">
+          <Button asChild variant="outline" className="border-[#DDA15E] text-[#DDA15E] hover:bg-[#DDA15E]/10">
             <Link href={reserveHref}>Reserve</Link>
+          </Button>
+          <Button asChild className="bg-[#722F37] text-white hover:bg-[#5e252d]">
+            <Link href={orderHref}>Order Online</Link>
           </Button>
         </div>
 
-        <button onClick={() => setOpen(!open)} className="md:hidden" aria-label="Open menu">
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        <button
+          type="button"
+          className="inline-flex items-center justify-center rounded-md p-2 text-foreground md:hidden"
+          onClick={() => setOpen((prev) => !prev)}
+          aria-label="Toggle navigation"
+        >
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </nav>
 
-      <div className={cn('border-t border-border/60 bg-background md:hidden', open ? 'block' : 'hidden')}>
-        <div className="mx-auto max-w-7xl space-y-4 px-4 py-4">
+      <div
+        className={cn(
+          'border-t border-border/60 bg-background/95 px-4 py-4 md:hidden',
+          open ? 'block' : 'hidden'
+        )}
+      >
+        <div className="flex flex-col gap-4">
           {navLinks.map((link) => (
-            <Link key={link.label} href={link.href} onClick={() => setOpen(false)} className="block font-medium">
+            <Link key={link.label} href={link.href} className="text-sm font-medium" onClick={() => setOpen(false)}>
               {link.label}
             </Link>
           ))}
@@ -84,12 +88,12 @@ export default function Navbar({
             <Phone className="h-4 w-4 text-[#606C38]" />
             {phone}
           </a>
-          <div className="grid grid-cols-2 gap-3">
-            <Button asChild variant="outline" className="border-[#DDA15E] text-[#722F37]">
-              <Link href={orderHref}>Order</Link>
-            </Button>
-            <Button asChild className="bg-[#722F37] text-white hover:bg-[#5f2730]">
+          <div className="flex flex-col gap-2">
+            <Button asChild variant="outline" className="border-[#DDA15E] text-[#DDA15E] hover:bg-[#DDA15E]/10">
               <Link href={reserveHref}>Reserve</Link>
+            </Button>
+            <Button asChild className="bg-[#722F37] text-white hover:bg-[#5e252d]">
+              <Link href={orderHref}>Order Online</Link>
             </Button>
           </div>
         </div>
